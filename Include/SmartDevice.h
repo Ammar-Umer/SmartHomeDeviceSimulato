@@ -2,6 +2,7 @@
 #define SMARTDEVICE_H
 
 #include <iostream>
+#include<string>
 using namespace std;
 class SmartDevice
 {
@@ -18,10 +19,10 @@ public:
     int static count;
 
     // Default Constructor
-    SmartDevice();
-
-    // Parameterized Constructor
     SmartDevice(int id, string n, string loc, string version);
+
+    // Copy Constructor
+    SmartDevice(const SmartDevice &obj);
 
     // Destructor
     virtual ~SmartDevice();
@@ -37,6 +38,23 @@ public:
     void setDeviceId(int);
     void setDeviceName(string);
     void setDeviceLocation(string);
+    void setFirmwareVersion(string);
+    void setPowerStatus(bool);
+
+    // Pure Virtual Fn
+    virtual void toggle() = 0;
+    virtual void getStatus() const = 0;
+    virtual void generateReport() const = 0;
+
+    // Normal Virtual Fn
+    virtual void restart();
+
+    // Opreator Overloading
+    bool operator==(const SmartDevice &other);
+
+    // Friend Function
+    friend ostream& operator<<(ostream&out,const SmartDevice & device);
+
     
 };
 
