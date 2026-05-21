@@ -10,7 +10,6 @@ private:
     int deviceId;
     string deviceName;
     string location;
-    string firmwareVersion;
 
 protected:
     bool isOn;
@@ -31,14 +30,12 @@ public:
     int getDeviceId();
     string getDeviceName()const;
     string getDeviceLocation()const;
-    string getFirmwareVersion()const;
     bool getPowerStatus()const;
 
     // Setters
     void setDeviceId(int);
     void setDeviceName(string);
     void setDeviceLocation(string);
-    void setFirmwareVersion(string);
     void setPowerStatus(bool);
 
     // Pure Virtual Fn
