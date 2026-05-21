@@ -38,6 +38,8 @@ public:
     void setDeviceLocation(string);
     void setPowerStatus(bool);
 
+    // aaaaa
+
     // Pure Virtual Fn
     virtual void toggle() = 0;
     virtual void getStatus() const = 0;
