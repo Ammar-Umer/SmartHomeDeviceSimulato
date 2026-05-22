@@ -18,7 +18,7 @@ public:
     int static count;
 
     // Default Constructor
-    SmartDevice(int id, string n, string loc, string version);
+    SmartDevice(int id, string n, string loc);
 
     // Copy Constructor
     SmartDevice(const SmartDevice &obj);
