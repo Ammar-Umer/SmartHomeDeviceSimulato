@@ -1,3 +1,8 @@
+/*
+File Name: UserAuthentication.cpp
+Author : Muhammad Ammar Umer
+Purpose: Make UserAuthentication class for authentication of user
+*/
 #include "..\include\UserAuthentication.h"
 
 UserAuthentication::UserAuthentication(string user, string pass, string role)
