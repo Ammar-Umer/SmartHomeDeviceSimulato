@@ -1,5 +1,5 @@
-// SmartLight.h.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+/*file:Smartlight.h
+	Author:Umme Habiba*/
 #ifndef SMARTLIGHt_H
 #define SMARTLIGHT_H
 
