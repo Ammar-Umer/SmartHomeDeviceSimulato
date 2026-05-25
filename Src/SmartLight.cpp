@@ -65,7 +65,7 @@ string SmartLight :: getStatus() const {
 
  }
 
-string SmartLight::generateReport() const{
+void SmartLight::generateReport() const{
 	cout << "====SmartLight Report====\n";
 	cout << "Device " << name << "( " << deviceId << "):\n";
 	cout << "Status: " << (isOn ? "turned On" : "turned Off");
