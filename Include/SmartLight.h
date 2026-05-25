@@ -46,7 +46,7 @@ public:
 	//Override functions
 	void toggle()  override;
 	string getStatus()override;
-	string generateReport()override;
+	void generateReport()override;
 
 	//Schedule override
 	void schedule(const string& time) override;
