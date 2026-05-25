@@ -59,7 +59,7 @@ void SmartLight::toggle() {
 
 }
 string SmartLight :: getStatus() const {
-	return name + " | "(isOn ? "turned On" : "turned Off") +
+	return name + " | "+(isOn ? "turned On" : "turned Off") +
 		" | Brightness: " + to_string(brightness) + "% | Temperature: " + to_string(colorTemperature)
 		+ "K | Color: " + hexColor;
 
