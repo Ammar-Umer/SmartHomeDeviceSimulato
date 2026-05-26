@@ -58,10 +58,10 @@ void SmartLight::toggle() {
 	cout << name << (isOn ? "turned On" : "turned Off");
 
 }
-string SmartLight :: getStatus() const {
-	return name + " | "+(isOn ? "turned On" : "turned Off") +
-		" | Brightness: " + to_string(brightness) + "% | Temperature: " + to_string(colorTemperature)
-		+ "K | Color: " + hexColor;
+void SmartLight :: getStatus() const {
+	cout<< name <<" | "+(isOn ? "turned On" : "turned Off") <<
+		" | Brightness: " <<brightness<< "% | Temperature: " << colorTemperature<<
+		 "K | Color: " << hexColor<<endl;
 
  }
 
