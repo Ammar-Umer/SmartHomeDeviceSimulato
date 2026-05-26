@@ -14,7 +14,6 @@ private:
     string role;
 
 public:
-    UserAuthentication();
     UserAuthentication(string user, string pass, string role);
 
     string getUsername() const;
@@ -26,6 +25,7 @@ public:
     void setRole(string);
 
     void registerUser();
+    void registerGuest();
     bool login();
     void logout();
     bool verifyRole(string);

@@ -5,7 +5,7 @@ Purpose: Make UserAuthentication class for authentication of user
 */
 #include "..\include\UserAuthentication.h"
 
-UserAuthentication::UserAuthentication(string user, string pass, string role)
+UserAuthentication::UserAuthentication(string user = "", string pass = "", string role = "")
 {
     userName = user;
     password = pass;
@@ -44,7 +44,11 @@ void UserAuthentication::setRole(string role)
 
 void UserAuthentication::registerUser()
 {
-    ofstream out("Files/users.txt", ios::app);
+    system("cls");
+    cout << "\t\t\t=====Registration Page=====\n\n"
+         << endl;
+    ofstream out("../Files/users.txt", ios::app);
+
     cout << "Enter Username: ";
     cin >> userName;
     cout << "Enter Password: ";
@@ -54,18 +58,43 @@ void UserAuthentication::registerUser()
 
     out << userName << " " << password << " " << role << endl;
     out.close();
-    cout << "User Registered Successfully" << endl;
+    cout << "User Registered Successfully.\nPress Enter to Continue..." << endl;
+    cin.ignore();
+    cin.get();
 }
+// void UserAuthentication::registerGuest()
+// {
+//     system("cls");
+//     cout << "\t\t\t=====Registration Page=====\n\n"
+//          << endl;
+//     ofstream out("../Files/users.txt", ios::app);
+
+//     cout << "Enter Username: ";
+//     cin >> userName;
+//     cout << "Enter Password: ";
+//     cin >> password;
+//     role = "Guest";
+
+//     out << userName << " " << password << " " << role << endl;
+//     out.close();
+//     cout << "User Registered Successfully.\nPress Enter to Continue..." << endl;
+//     cin.ignore();
+//     cin.get();
+// }
 
 bool UserAuthentication::login()
 {
+    system("cls");
+
     string u, p, r;
     string inputPass, inputUser;
+    cout << "\t\t\t=====Login Page=====\n"
+         << endl;
     cout << "Enter Your Username: ";
     cin >> inputUser;
     cout << "Enter Password: ";
     cin >> inputPass;
-    ifstream in("Files/users.txt");
+    ifstream in("../Files/users.txt");
     while (in >> u >> p >> r)
     {
         if (inputUser == u && inputPass == p)
@@ -73,7 +102,7 @@ bool UserAuthentication::login()
             userName = u;
             password = p;
             role = r;
-            cout << "Login Successfully" << endl;
+
             in.close();
             return true;
         }
@@ -92,7 +121,12 @@ void UserAuthentication::logout()
 
 bool UserAuthentication::verifyRole(string r)
 {
-    return (role == r);
+
+    if (role == r)
+    {
+        return true;
+    }
+    return false;
 }
 
 bool UserAuthentication::grantGuestAccess()
