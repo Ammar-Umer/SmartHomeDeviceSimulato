@@ -45,7 +45,7 @@ public:
 
 	//Override functions
 	void toggle()  override;
-	string getStatus()override;
+	void getStatus()override;
 	void generateReport()override;
 
 	//Schedule override
