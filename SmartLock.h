@@ -8,6 +8,8 @@ private:
 	bool isLocked;
 	string accessCode;
 	string accessLog[1000];
+	int logCount;
+	int count;
 public:
 	Lock();
 	Lock(const string& i, const string& n, const string& l, const string& code = "0000");
