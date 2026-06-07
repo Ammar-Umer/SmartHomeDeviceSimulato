@@ -1,57 +1,55 @@
-/*file:Smartlight.h
-	Author:Umme Habiba*/
-#ifndef SMARTLIGHt_H
+#ifndef SMARTLIGHT_H
 #define SMARTLIGHT_H
 
 #include <iostream>
-#include"SmartDevice.h"
-using namespace std;
-//interface
-class Schedulable {
-	public:
-		virtual void schedule(const string &time)  = 0;
-		virtual void cancelSchedule() = 0;
-		virtual ~Schedulable()=0;
+#include <string>
+#include "SmartDevice.h"
 
+// interface
+class Schedulable
+{
+public:
+	virtual void schedule(const std::string &time) = 0;
+	virtual void cancelSchedule() = 0;
+	virtual ~Schedulable() = default;
 };
 
-class SmartLight:public SmartDevice ,public Schedulable{
+class SmartLight : public SmartDevice, public Schedulable
+{
 	int brightness;
 	int colorTemperature;
-	string hexColor;
-	string scheduledTime;
+	std::string hexColor;
+	std::string scheduledTime;
+
 public:
-	
-	//Parameterized constructor
-	SmartLight(int &id,const string &name,const string& location,int b,int ctemp,string hexc);
+	// Parameterized constructor
+	SmartLight(int &id, const std::string &name, const std::string &location, std::string &v, int b, int ctemp, std::string hexc);
 
-	//parameterized constructor
-	SmartLight(const SmartLight& other);
+	// Copy constructor
+	SmartLight(const SmartLight &other);
 
-	//destructor
-	~SmartLight(); 
+	// destructor
+	~SmartLight();
 
-	//getters
+	// getters
 	int getBrightness();
 	int getColorTemperature();
-	string getHexColor();
+	std::string getHexColor();
 
-	//setters
+	// setters
 	void setBrightness(int b);
 	void setColorTemperature(int ctemp);
-	void setHexColor(string hexc);
+	void setHexColor(std::string hexc);
 
 	void dimToSunset();
 
-	//Override functions
-	void toggle()  override;
-	void getStatus()override;
-	void generateReport()override;
+	// Override functions
+	void toggle() override;
+	void getStatus() const override;
+	void generateReport() const override;
 
-	//Schedule override
-	void schedule(const string& time) override;
+	// Schedule override
+	void schedule(const std::string &time) override;
 	void cancelSchedule() override;
-
-
 };
 #endif

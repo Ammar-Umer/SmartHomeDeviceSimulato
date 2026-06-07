@@ -4,31 +4,30 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-using namespace std;
 
 class UserAuthentication
 {
 private:
-    string userName;
-    string password;
-    string role;
+    std::string userName;
+    std::string password;
+    std::string role;
 
 public:
-    UserAuthentication(string user, string pass, string role);
+    UserAuthentication(std::string user="", std::string pass="", std::string role="");
 
-    string getUsername() const;
-    string getPassword() const;
-    string getRole() const;
+    std::string getUsername() const;
+    std::string getPassword() const;
+    std::string getRole() const;
 
-    void setUsername(string);
-    void setPassword(string);
-    void setRole(string);
+    void setUsername(std::string);
+    void setPassword(std::string);
+    void setRole(std::string);
 
     void registerUser();
     void registerGuest();
     bool login();
     void logout();
-    bool verifyRole(string);
+    bool verifyRole(std::string);
     bool grantGuestAccess();
 };
 

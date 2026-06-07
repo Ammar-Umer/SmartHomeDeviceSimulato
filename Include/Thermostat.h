@@ -5,46 +5,41 @@
 #include"SmartDevice.h"
 #include"SmartLight.h"
 #include <iostream>
-using namespace std;
-
-
+#include <string>
 
 class Thermostat:public SmartDevice,public Schedulable {
-
-	double targetTemperature;
-	double currentTemperature;
-	string mode;
-	string scheduledTime;
+    double targetTemperature;
+    double currentTemperature;
+    std::string mode;
+    std::string scheduledTime;
 public:
-	//constructors
-	Thermostat(int id, const string& name, const string& location, double tt, double ct, string m);
+    // constructors
+    Thermostat(int id, const std::string& name, const std::string& location, const std::string& v, double tt, double ct, std::string m);
 
-	Thermostat(const Thermostat& other);
-	 
-	//destructor
-	~Thermostat() {};
+    Thermostat(const Thermostat& other);
 
-	//getters
-	double getTargetTemperature()const;
-	double getCurrentTemperature()const;
-string getMode() const;
+    // destructor
+    ~Thermostat();
 
-	//setters
-	void setTargetTemperature(double tt);
-	void setCurrentTemperature(double ct);
-	void changeMode(const std::string& m);
+    // getters
+    double getTargetTemperature()const;
+    double getCurrentTemperature()const;
+std::string getMode() const;
 
-	//schedule(interface) override
-	void schedule(const string& time) override;
-	void cancelSchedule() override;
+    // setters
+    void setTargetTemperature(double tt);
+    void setCurrentTemperature(double ct);
+    void changeMode(const std::string& m);
 
-	//Override functions
-	void toggle() override;
+    // schedule(interface) override
+    void schedule(const std::string& time) override;
+    void cancelSchedule() override;
+
+    // Override functions
+    void toggle() override;
 void getStatus()const override;
-	void generateReport()const override;
-
+    void generateReport()const override;
 
 
 };
 #endif
-

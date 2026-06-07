@@ -3,9 +3,13 @@ File Name: UserAuthentication.cpp
 Author : Muhammad Ammar Umer
 Purpose: Make UserAuthentication class for authentication of user
 */
-#include "..\include\UserAuthentication.h"
+#include "UserAuthentication.h"
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
 
-UserAuthentication::UserAuthentication(string user = "", string pass = "", string role = "")
+UserAuthentication::UserAuthentication(string user, string pass, string role)
 {
     userName = user;
     password = pass;
@@ -45,56 +49,49 @@ void UserAuthentication::setRole(string role)
 void UserAuthentication::registerUser()
 {
     system("cls");
-    cout << "\t\t\t=====Registration Page=====\n\n"
-         << endl;
-    ofstream out("../Files/users.txt", ios::app);
-
+    cout << "\t\t\t=====Registration Page=====\n\n" << endl;
+    ofstream out("Files/users.txt", ios::app);
     cout << "Enter Username: ";
     cin >> userName;
     cout << "Enter Password: ";
     cin >> password;
     cout << "Enter Role(Admin/Owner/Guest): ";
     cin >> role;
-
     out << userName << " " << password << " " << role << endl;
     out.close();
     cout << "User Registered Successfully.\nPress Enter to Continue..." << endl;
     cin.ignore();
     cin.get();
 }
-// void UserAuthentication::registerGuest()
-// {
-//     system("cls");
-//     cout << "\t\t\t=====Registration Page=====\n\n"
-//          << endl;
-//     ofstream out("../Files/users.txt", ios::app);
 
-//     cout << "Enter Username: ";
-//     cin >> userName;
-//     cout << "Enter Password: ";
-//     cin >> password;
-//     role = "Guest";
-
-//     out << userName << " " << password << " " << role << endl;
-//     out.close();
-//     cout << "User Registered Successfully.\nPress Enter to Continue..." << endl;
-//     cin.ignore();
-//     cin.get();
-// }
+void UserAuthentication::registerGuest()
+{
+    system("cls");
+    cout << "\t\t\t=====Registration Page=====\n\n" << endl;
+    ofstream out("Files/users.txt", ios::app);
+    cout << "Enter Username: ";
+    cin >> userName;
+    cout << "Enter Password: ";
+    cin >> password;
+    role = "Guest";
+    out << userName << " " << password << " " << role << endl;
+    out.close();
+    cout << "Guests Registered Successfully.\nPress Enter to Continue..." << endl;
+    cin.ignore();
+    cin.get();
+}
 
 bool UserAuthentication::login()
 {
     system("cls");
-
     string u, p, r;
     string inputPass, inputUser;
-    cout << "\t\t\t=====Login Page=====\n"
-         << endl;
+    cout << "\t\t\t=====Login Page=====\n" << endl;
     cout << "Enter Your Username: ";
     cin >> inputUser;
     cout << "Enter Password: ";
     cin >> inputPass;
-    ifstream in("../Files/users.txt");
+    ifstream in("Files/users.txt");
     while (in >> u >> p >> r)
     {
         if (inputUser == u && inputPass == p)
@@ -102,7 +99,6 @@ bool UserAuthentication::login()
             userName = u;
             password = p;
             role = r;
-
             in.close();
             return true;
         }
@@ -121,7 +117,6 @@ void UserAuthentication::logout()
 
 bool UserAuthentication::verifyRole(string r)
 {
-
     if (role == r)
     {
         return true;

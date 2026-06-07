@@ -3,14 +3,15 @@
 
 #include <iostream>
 #include <string>
-using namespace std;
+#include <vector>
+class EnergyLog;
 class SmartDevice
 {
 private:
     int deviceId;
-    string deviceName;
-    string location;
-    string firmwareVersion;
+    std::string deviceName;
+    std::string location;
+    std::string type;
 
 protected:
     bool isOn;
@@ -19,7 +20,7 @@ public:
     int static count;
 
     // Default Constructor
-    SmartDevice(int id, string n, string loc, string v);
+    SmartDevice(int id, std::string n, std::string loc, std::string typ);
 
     // Copy Constructor
     SmartDevice(const SmartDevice &obj);
@@ -29,16 +30,16 @@ public:
 
     // Getters
     int getDeviceId() const;
-    string getDeviceName() const;
-    string getDeviceLocation() const;
-    string getDeviceVersion() const;
+    std::string getDeviceName() const;
+    std::string getDeviceLocation() const;
+    std::string getDeviceType() const;
     bool getPowerStatus() const;
 
     // Setters
     void setDeviceId(int);
-    void setDeviceName(string);
-    void setDeviceLocation(string);
-    void setDeviceVersion(string);
+    void setDeviceName(std::string);
+    void setDeviceLocation(std::string);
+    void setDeviceType(std::string);
     void setPowerStatus(bool);
 
     // Pure Virtual Fn
@@ -53,7 +54,7 @@ public:
     bool operator==(const SmartDevice &other);
 
     // Friend Function
-    friend ostream &operator<<(ostream &out, const SmartDevice &device);
+    friend std::ostream &operator<<(std::ostream &out, const SmartDevice &device);
 };
 
 #endif

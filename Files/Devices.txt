@@ -1,0 +1,2 @@
+2 101 InbuiltSpeaker LivingRoom Speaker 50
+2 102 GateLock Entrance Lock 005

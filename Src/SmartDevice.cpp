@@ -4,20 +4,34 @@ Author : Muhammad Ammar Umer
 Purpose: Make Abstract Class of SmartDevice
 */
 
-#include "..\include\SmartDevice.h"
-
+#include "SmartDevice.h"
+#include"EnergyLog.h"
+#include <iostream>
+using namespace std;
+std::vector<EnergyLog *> logs;
 int SmartDevice::count = 0;
-// Costructor
-SmartDevice::SmartDevice(int id, string n, string loc,string v)
+// Constructor
+SmartDevice::SmartDevice(int id, string n, string loc, string typ)
 {
     deviceId = id;
     deviceName = n;
     location = loc;
-    firmwareVersion=v;
+    type = typ;
     isOn = false;
-
     count++;
 }
+
+// Copy Constructor
+SmartDevice::SmartDevice(const SmartDevice& other)
+    : deviceId(other.deviceId),
+      deviceName(other.deviceName),
+      location(other.location),
+      type(other.type),
+      isOn(other.isOn)
+{
+    count++;
+}
+
 // Destructor
 SmartDevice::~SmartDevice()
 {
@@ -41,9 +55,9 @@ string SmartDevice::getDeviceLocation() const
     return location;
 }
 
-string SmartDevice::getDeviceVersion() const
+string SmartDevice::getDeviceType() const
 {
-    return firmwareVersion;
+    return type;
 }
 
 bool SmartDevice::getPowerStatus() const
@@ -68,9 +82,9 @@ void SmartDevice::setDeviceLocation(string loc)
     location = loc;
 }
 
-void SmartDevice::setDeviceVersion(string v)
+void SmartDevice::setDeviceType(string typ)
 {
-    firmwareVersion = v;
+    type = typ;
 }
 
 void SmartDevice::setPowerStatus(bool p)
@@ -83,17 +97,18 @@ void SmartDevice::restart()
     cout << "Restarting..." << endl;
 }
 
-bool SmartDevice::operator==(const SmartDevice &other)
+bool SmartDevice::operator==(const SmartDevice& other)
 {
     return (deviceId == other.deviceId);
 }
 
-ostream &operator<<(ostream &out, const SmartDevice &device)
+ostream& operator<<(ostream& out, const SmartDevice& device)
 {
     out << "ID: " << device.deviceId << endl;
     out << "Name: " << device.deviceName << endl;
     out << "Location: " << device.location << endl;
-    out << "Firmware Version: " << device.firmwareVersion << endl;
+    out << "Type: " << device.type << endl;
     out << "Power: " << (device.isOn ? "ON" : "OFF") << endl;
     return out;
 }
+

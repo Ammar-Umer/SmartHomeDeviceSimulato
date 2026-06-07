@@ -1,20 +1,56 @@
-// SecurityCamera.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
+// SecurityCamera.cpp
+#include "SecurityCamera.h"
 #include <iostream>
+using namespace std;
 
-int main()
-{
-    std::cout << "Hello World!\n";
+SecurityCamera::SecurityCamera(int id, const string& name, const string& location, const string& v, string r, int sen, int a)
+    : SmartDevice(id, name, location, v), resolution(r), motionSensitivity(sen), angle(a), isRecording(false) {}
+
+SecurityCamera::SecurityCamera(const SecurityCamera& other)
+    : SmartDevice(other), resolution(other.resolution), motionSensitivity(other.motionSensitivity),
+    angle(other.angle), isRecording(other.isRecording) {}
+
+SecurityCamera::~SecurityCamera() {
+    cout << getDeviceName() << " [camera] is destroyed\n";
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+string SecurityCamera::getResolution() const { return resolution; }
+int SecurityCamera::getMotionSensitivity() const { return motionSensitivity; }
+int SecurityCamera::getAngle() const { return angle; }
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+void SecurityCamera::setResolution(string r) { resolution = r; }
+void SecurityCamera::setMotionSensitivity(int sen) { motionSensitivity = sen; }
+void SecurityCamera::setAngle(int a) { angle = a; }
+
+void SecurityCamera::startRecording() {
+    isRecording = true;
+    cout << getDeviceName() << " started recording\n";
+}
+
+void SecurityCamera::setMotionAlert(bool m) {
+    cout << getDeviceName() << " motion alert " << (m ? "enabled" : "disabled") << endl;
+}
+
+void SecurityCamera::captureSnapshot() {
+    cout << getDeviceName() << " captured snapshot at " << angle << " degrees\n";
+}
+
+void SecurityCamera::toggle() {
+    isOn = !isOn;
+    cout << getDeviceName() << (isOn ? " turned ON" : " turned OFF") << endl;
+}
+
+void SecurityCamera::getStatus() const {
+    cout << getDeviceName() << " | " << (isOn ? "ON" : "OFF") << " | Resolution: " << resolution
+         << " | Angle: " << angle << " | Recording: " << (isRecording ? "Yes" : "No") << endl;
+}
+
+void SecurityCamera::generateReport() const {
+    cout << "====Security Camera Report====\n";
+    cout << "Device: " << getDeviceName() << " (" << getDeviceId() << ")\n";
+    cout << "Location: " << getDeviceLocation() << endl;
+    cout << "Status: " << (isOn ? "ON" : "OFF") << endl;
+    cout << "Resolution: " << resolution << endl;
+    cout << "Angle: " << angle << endl;
+    cout << "Recording: " << (isRecording ? "Yes" : "No") << endl;
+}

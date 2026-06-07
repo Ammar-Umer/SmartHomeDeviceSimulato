@@ -4,12 +4,11 @@
 
 #include"SmartDevice.h"
 #include<iostream>
-using namespace std;
-
+#include<string>
 
 class SecurityCamera :public SmartDevice {
 
-	string resolution;
+	std::string resolution;
 	 
 	int motionSensitivity;
 	int angle;
@@ -19,21 +18,21 @@ class SecurityCamera :public SmartDevice {
 
 public:
 	
-	//constructors
-	SecurityCamera(int id, const string& location, const string& name, string r, int sen, int a);
+	// constructors
+	SecurityCamera(int id, const std::string& name, const std::string& location, const std::string& v, std::string r, int sen, int a);
 	SecurityCamera(const SecurityCamera& other);
 
-	//destructor
-	~SecurityCamera() {};
+	// destructor
+	~SecurityCamera();
 
-	//getters
-	string getResolution() const;
-	int getMotionSensitivity()const;
+	// getters
+	std::string getResolution() const;
+	int getMotionSensitivity() const;
 	int getAngle() const;
 
 
-	//setters
-	void setResolution(string r);
+	// setters
+	void setResolution(std::string r);
 	void setMotionSensitivity(int sen);
 	void setAngle(int a);
 	
@@ -41,11 +40,10 @@ public:
 	void setMotionAlert(bool m);
 	void captureSnapshot();
 	
-	//Override functions
-	void toggle()override;
-	void setStatus()override;
-	void generateReport()override;
-
+	// Override functions
+	void toggle() override;
+	void getStatus() const override;
+	void generateReport() const override;
 
 
 };

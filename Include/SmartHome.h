@@ -2,31 +2,43 @@
 #define SMARTHOME_H
 
 #include <vector>
+#include <string>
 #include "Room.h"
-using namespace std;
+#include "Automation.h"
 
 class SmartHome
 {
 private:
     int homeId;
-    string owner;
-    string wifi;
-    vector<Room *> rooms;
+    std::string owner;
+    std::string wifi;
+    std::vector<Room *> rooms;
+    std::vector<Automation *> automations;
 
 public:
-    SmartHome(int id, string own, string wifi);
+    SmartHome(int id, std::string own, std::string wifi);
 
     int getHomeId() const;
-    string getOwner() const;
-    string getWifi() const;
+    std::string getOwner() const;
+    std::string getWifi() const;
+    std::vector<Room *> &getRooms();
 
     void setHomeId(int id);
-    void setOwner(string own);
-    void setWifi(string wifi);
+    void setOwner(std::string own);
+    void setWifi(std::string wifi);
 
+    void loadRooms();
+    Room *findRoom(int id);
     void addRooms(Room *room);
+    void removeRoom(int id);
     void showRooms() const;
     void getHomeStatus() const;
+
+    void loadAutomations();
+    void addAutomation(Automation *autom);
+    Automation *findAutomation(std::string id);
+    void removeAutomation(std::string id);
+    void showAutomations();
 };
 
 #endif
