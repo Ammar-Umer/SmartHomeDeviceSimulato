@@ -536,6 +536,7 @@ void deviceManager(SmartHome house)
             system("cls");
             for (auto r : house.getRooms())
             {
+                r->getRoomId();
                 r->showDevices();
             }
             cout << "Press Enter to Continue...";
@@ -746,9 +747,11 @@ void guestMenu(SmartHome &house)
     string c;
     do
     {
+        system("cls");
         cout << "\t\t\t=====Guest Menu=====\t\t\t\n"
              << endl;
         cout << "1.Device Control" << endl;
+        cout<<"2.View All Devices"<<endl;
         cout << "0.Logout" << endl;
         cout << "Enter your choice= ";
         cin >> c;
@@ -756,6 +759,18 @@ void guestMenu(SmartHome &house)
         {
             system("cls");
             deviceControl(&h);
+        }
+        else if (c=="2")
+        {
+            system("cls");
+            for (auto r : house.getRooms())
+            {
+                r->getRoomId();
+                r->showDevices();
+            }
+            cout << "Press Enter to Continue...";
+            cin.ignore();
+            cin.get();
         }
         
         else if (c == "0")
